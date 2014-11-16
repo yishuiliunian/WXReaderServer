@@ -1,6 +1,8 @@
 require "rest-client"
 require "nokogiri"
 require "uri"
+require "rubypython"
+require "json"
 
 class SearchWorker
   include Sidekiq::Worker
@@ -55,7 +57,21 @@ class SearchWorker
       if items.size == 0
         break
       end
-
+#      for each in items do
+#        content = RestClient.get(each.sourceURL)
+#        RubyPython.start
+#        sys = RubyPython.import("sys")
+#        os = RubyPython.import("os")
+#        cpath = os.path.realpath("./app/workers/")
+#        sys.path.append(cpath)
+#        exw = RubyPython.import("exwords")
+#        words = exw.ExtractWordModel(content)
+#        a = words.rubify
+#        exw = JSON.parse(a)
+#        puts exw
+#        RubyPython.stop
+#      end
+#
     end
     puts 'end'
   end
