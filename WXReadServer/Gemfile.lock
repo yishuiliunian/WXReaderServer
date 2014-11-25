@@ -141,12 +141,17 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    settingslogic (2.0.9)
     sidekiq (3.2.6)
       celluloid (= 0.15.2)
       connection_pool (>= 2.0.0)
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    simple_token_authentication (1.6.0)
+      actionmailer (>= 3.2.6, < 5)
+      actionpack (>= 3.2.6, < 5)
+      devise (~> 3.2)
     spring (1.1.3)
     sprockets (2.11.3)
       hike (~> 1.2)
@@ -182,18 +187,22 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  connection_pool
   devise
   grape
   jbuilder (~> 2.0)
   jquery-rails
   nokogiri
   rails (= 4.1.6)
+  redis
   rest-client
   ruby-feedparser
   rubypython
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
+  settingslogic
   sidekiq
+  simple_token_authentication
   spring
   sqlite3
   turbolinks

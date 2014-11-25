@@ -1,0 +1,11 @@
+defaults: &defaults
+  token_experie_time: 1000
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

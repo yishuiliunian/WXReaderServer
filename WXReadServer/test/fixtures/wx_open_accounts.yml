@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  openId: MyString
+  name: MyString
+  wechatId: MyString
+  summary: MyText
+
+two:
+  openId: MyString
+  name: MyString
+  wechatId: MyString
+  summary: MyText

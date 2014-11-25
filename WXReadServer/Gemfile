@@ -52,3 +52,10 @@ gem 'sidekiq'
 gem "ruby-feedparser"
 
 gem "rubypython"
+
+gem "simple_token_authentication"
+
+gem "redis"
+gem "connection_pool"
+
+gem "settingslogic"

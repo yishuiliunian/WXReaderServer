@@ -10,7 +10,9 @@ module Twitter
       end
       route_param :keywords do
         get do
-            SearchWorker.perform_async(params[:keywords], 5)
+          key = params[:keywords]
+          puts key
+            SearchWorker.perform_async(key, 5)
             "aaa"
         end
       end

@@ -38,8 +38,16 @@ class SearchWorker
       title = txtBox.css("h4").css("a")[0].text
       item.title = title
 
-      author = x.css("div.s-p").css("a")[0]["title"]
+      authorTexts = x.css("div.s-p").css("a")[0]
+
+      author = authorTexts["title"]
       item.autor = author
+
+      href = authorTexts["href"]
+      if href.length > 12
+        href = href[12..href.length - 1]
+      end
+      item.authorGuid = href
 
 
       items.push(item)
@@ -57,22 +65,12 @@ class SearchWorker
       if items.size == 0
         break
       end
-#      for each in items do
-#        content = RestClient.get(each.sourceURL)
-#        RubyPython.start
-#        sys = RubyPython.import("sys")
-#        os = RubyPython.import("os")
-#        cpath = os.path.realpath("./app/workers/")
-#        sys.path.append(cpath)
-#        exw = RubyPython.import("exwords")
-#        words = exw.ExtractWordModel(content)
-#        a = words.rubify
-#        exw = JSON.parse(a)
-#        puts exw
-#        RubyPython.stop
-#      end
-#
+      for each in items do
+#        `python ./app/workers/exwords.py -u \"#{each.sourceURL}\"`
+      end
+
     end
+    LogMailer.log_warning("stonedong@tencent.com").deliver
     puts 'end'
   end
 end

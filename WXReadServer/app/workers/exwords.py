@@ -4,6 +4,10 @@ import codecs
 import html2text
 import math
 import json
+from goose import Goose
+from goose.text import StopWordsChinese
+import sys
+import argparse
 
 
 IgnoreWordsFeatureList = ['w', 'x', 'u', 'p', 'c' ,'q']
@@ -86,8 +90,12 @@ def extractWordCountModel(content):
     return wordMap, sumCount
  
 
-def ExtractWordModel(content):
-    content = html2text.html2text(content.encode("UTF-8") )
+def ExtractWordModel(url):
+    print(url)
+    print("\n")
+    g = Goose({'stopwords_class': StopWordsChinese})
+    article = g.extract(url=url)
+    content = article.cleaned_text
     wrodRatioMap = {}
     wordMap , sumCount = extractWordCountModel(content)
     if sumCount != 0:
@@ -99,4 +107,12 @@ def ExtractWordModel(content):
                 wrodRatioMap[key] = float(count)/sumCount
             except KeyError:
                 continue
-    return json.dumps(subTopItemsIndictionary(wrodRatioMap, 1000))
+    return subTopItemsIndictionary(wrodRatioMap, 1000)
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-u', action = 'store', dest='url')
+results = parser.parse_args()
+words = ExtractWordModel(results.url)
+
+tops = topItemsInDictionary(words, 100)
+print(json.dumps(tops))
