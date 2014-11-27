@@ -9,7 +9,7 @@ module WxRead
         requires :length, :type => String, :desc => "获取多少readitem"
       end
       get do
-        WxReadItem.limit(20)
+        {"WRReadItem" => WxReadItem.limit(1)}.to_json
       end
     end
   end

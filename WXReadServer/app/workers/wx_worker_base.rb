@@ -47,9 +47,10 @@ class WxWorkerBase
   end
   def perform(name, count)
     items = searchOpenAccount(name)
-    if items.size != 0
-      puts items
-    end
+    items.each{ |accout|
+      puts "will search account #{accout.openId}"
+      SearchGzhWorker.perform_async(accout.openId,1)
+    }
 
   end
 

@@ -65,9 +65,9 @@ class SearchWorker
       if items.size == 0
         break
       end
-      for each in items do
+#     for each in items do
 #        `python ./app/workers/exwords.py -u \"#{each.sourceURL}\"`
-      end
+#     end
 
     end
     LogMailer.log_warning("stonedong@tencent.com").deliver
